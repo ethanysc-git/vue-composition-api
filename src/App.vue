@@ -3,6 +3,7 @@
     <aside-menu @triggerMarkerPopup="openPopup" ref="menu" />
     <mask-map ref="map" />
     <light-box />
+    
   </div>
 </template>
 
