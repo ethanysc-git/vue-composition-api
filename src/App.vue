@@ -13,7 +13,7 @@
         </nav>
         <nav>
           <a href="#">
-            <span>Info</span>
+            <span>Vaccine Map</span>
           </a>
         </nav>
     </header>
