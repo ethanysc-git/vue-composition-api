@@ -3,50 +3,106 @@
   <div class="aside-menu">
 
     <div class="wraps">
-      <label>
-        縣市：<select v-model="currCity">
-          <option v-for="c in cityList" :key="c">{{ c }}</option>
-        </select>
-      </label>
+      
+        
+        <va-select
+            v-model="currCity"
+            class="mb-3"
+            placeholder="Default (solid)"
+            :options="cityList">
+          <template #prepend>
+            <div>
+                <va-icon tag="div" @click.stop name="location_city" />
+                <va-icon 
+                  tag="div" 
+                  size="small"
+                  class="mr-4"
+                  name="縣市:"/>
+            </div>
+          </template>
+        </va-select>
+      
 
-      <label>
-        行政區：<select v-model="currDistrict">
-          <option v-for="d in districtList" :key="d.id">{{ d.name }}</option>
-        </select>
-      </label>
-    </div>
-
-    <div class="wraps">
-      <label>
-        <i class="fas fa-search-location"></i> 關鍵字搜尋：
-        <input type="text" placeholder="請輸入關鍵字" v-model="keywords">
-      </label>
+        <va-select
+            v-model="currDistrict"
+            class="mb-3"
+            :options="districtList"
+            :text-by="(option) => option.name"
+            :value-by="(option) => option.name"
+            >
+          <template #prepend>
+            <div>
+                <va-icon tag="div" @click.stop />
+                <va-icon 
+                  tag="div" 
+                  size="small"
+                  class="mr-4"
+                  name="行政區："/>
+            </div>
+          </template>
+        </va-select>
+        <div>
+          <va-input
+            type="text"
+            class="mb-4"
+            v-model="keywords"
+            placeholder="請輸入關鍵字">
+            <template #prepend>
+              <div>
+                <va-icon tag="div" name="search" />
+                <va-icon 
+                  tag="div" 
+                  size="small"
+                  class="mr-4"
+                  name="關鍵字"/>
+              </div>
+            </template>  
+          </va-input>
+        </div>
     </div>
 
     <ul class="store-lists">
       <li class="store-info wraps" 
         v-for="s in filteredStores" :key="s.id" @click="$emit('triggerMarkerPopup', s.id)">
-        
-        <h1 v-html="keywordHighlight(s.name)"></h1>
 
         <div class="mask-info">
-          <i class="fas fa-head-side-mask"></i>
+        <va-icon name="medication" />
+        <va-icon v-html="keywordHighlight(s.name)"/>
+        </div>
+
+        <div class="mask-info">
+          <va-icon name="person" />
           <span>大人口罩: {{ s.mask_adult }} 個</span>
         </div>
 
         <div class="mask-info">
-          <i class="fas fa-baby"></i>
+          <va-icon name="child_care" />
           <span>兒童口罩: {{ s.mask_child }} 個</span>
         </div>
 
         <div class="mask-info">
-          最後更新時間: {{ s.updated }}
+        <va-button size="small" class="mr-4" @click="openInfoBox(s.id)">  
+          <va-icon name="info" />
+          詳細資訊
+        </va-button>
+
+        </div>
+        <div>
+        <va-icon name="update" />
+        <va-icon 
+          tag="div" 
+          name="最後更新時間:" 
+          size="small"
+          />
+        <va-icon 
+          size="small"
+          class="mr-4"
+          v-html="s.updated"/>
         </div>
 
-        <button class="btn-store-detail" @click="openInfoBox(s.id)">
-          <i class="fas fa-info-circle"></i>
-          看詳細資訊
-        </button>
+
+        
+
       </li>
     </ul>
 

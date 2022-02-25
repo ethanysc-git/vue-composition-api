@@ -1,5 +1,22 @@
 <template>
   <div id="app">
+    <header>
+        <nav>
+          <a href="#">
+            <span>Home</span>
+          </a>
+        </nav>
+        <nav>
+          <a href="#">
+            <span>Mask Map</span>
+          </a>
+        </nav>
+        <nav>
+          <a href="#">
+            <span>Info</span>
+          </a>
+        </nav>
+    </header>
     <aside-menu @triggerMarkerPopup="openPopup" ref="menu" />
     <mask-map ref="map" />
     <light-box />
