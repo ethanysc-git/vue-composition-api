@@ -1,21 +1,34 @@
 <template>
   <div id="app">
     <header>
-        <nav>
-          <a href="#">
-            <span>Home</span>
-          </a>
+
+        <nav >
+          <va-navbar color="primary" class="mb-2">
+            <template #left>
+              <va-navbar-item>
+                <a href="#" class="top-bar-link">
+                  <i class="icofont-spoon-and-fork"></i>
+                  <span>首頁</span>
+                </a>
+              </va-navbar-item>
+            </template>
+            <template #center>
+              <va-navbar-item>
+                <a href="#" class="top-bar-link">
+                  <span>口罩地圖</span>
+                </a>
+              </va-navbar-item>
+            </template>
+            <template #right>
+              <va-navbar-item>
+                <a href="#" class="top-bar-link">
+                  <span>疫苗地圖</span>
+                </a>
+              </va-navbar-item>
+            </template>
+          </va-navbar>
         </nav>
-        <nav>
-          <a href="#">
-            <span>Mask Map</span>
-          </a>
-        </nav>
-        <nav>
-          <a href="#">
-            <span>Vaccine Map</span>
-          </a>
-        </nav>
+
     </header>
     <aside-menu @triggerMarkerPopup="openPopup" ref="menu" />
     <mask-map ref="map" />
